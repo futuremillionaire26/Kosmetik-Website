@@ -1,0 +1,120 @@
+// Eine grundlegende Struktur einer Website mit HTML, CSS und JavaScript für den Verkauf von Online-Schulungen,
+// Live-Schulungsplätzen und Buchung von Behandlungen. Es verwendet einfache HTML-Elemente und JavaScript für die Funktionalität.
+
+// HTML (Beispiel):
+const htmlContent = `
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schulungen & Behandlungen</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Schulungen & Behandlungen</h1>
+
+        <div class="section" id="online-courses">
+            <h2>Online-Schulungen</h2>
+            <div id="course-list"></div>
+        </div>
+
+        <div class="section" id="live-courses">
+            <h2>Live-Schulungen</h2>
+            <div id="live-course-list"></div>
+        </div>
+
+        <div class="section" id="treatments">
+            <h2>Behandlungen</h2>
+            <div id="treatment-list"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+`;
+
+// JavaScript (app.js):
+const jsContent = `
+// Beispiel-Daten für Schulungen und Behandlungen
+const onlineCourses = [
+    { id: 1, name: "Online-Schulung A", price: 50 },
+    { id: 2, name: "Online-Schulung B", price: 75 },
+];
+
+const liveCourses = [
+    { id: 1, name: "Live-Schulung A", price: 100 },
+    { id: 2, name: "Live-Schulung B", price: 150 },
+];
+
+const treatments = [
+    { id: 1, name: "Behandlung A", price: 40 },
+    { id: 2, name: "Behandlung B", price: 60 },
+];
+
+// Funktion, um Elemente zu rendern
+function renderItems(containerId, items, type) {
+    const container = document.getElementById(containerId);
+    items.forEach(item => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'item';
+        itemDiv.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>Preis: €${item.price}</p>
+            <button class="button" onclick="handlePurchase('${type}', ${item.id})">Jetzt kaufen</button>
+        `;
+        container.appendChild(itemDiv);
+    });
+}
+
+// Kauf-Handler
+function handlePurchase(type, id) {
+    alert(`${type} mit ID: ${id} wurde gekauft!`);
+}
+
+// Daten rendern
+renderItems('course-list', onlineCourses, 'Online-Schulung');
+renderItems('live-course-list', liveCourses, 'Live-Schulung');
+renderItems('treatment-list', treatments, 'Behandlung');
+`;
+
+// Exportiere den HTML- und JavaScript-Inhalt als Dateien
+module.exports = { htmlContent, jsContent };
